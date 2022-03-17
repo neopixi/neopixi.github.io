@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width">
   
   <meta name="description" content="" />
   <meta name="keywords" content="" />
@@ -167,7 +167,7 @@
         <style>
           /* class applies to select element itself, not a wrapper element */
       
-      
+
       
       body {
           font-family: "Roboto Mono";
@@ -321,11 +321,21 @@
         display: none;
        }
       
+       html,
+body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow-x: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+}
       </style>
           <h2 style="color: black; font-weight: 600; margin-bottom: 30px;">Калькулятор стоимости</h2>
 
-          <div style="display: flex; flex-direction: row;">
-              <div style="width: 50%; margin-right: 5%;">
+          <div style="display: flex;" class="calc-container">
+              <div class="calc-block">
               <h2 style="color: black; font-weight: 600; font-size: 1.5em;">Управляемые розетки</h2>
               <select class="select-css" id="sockets">
                   <option>Количество каналов</option>
@@ -368,7 +378,7 @@
                   <option value = 9>9 м.</option>
               </select>
               </div>
-              <div style="width: 50%;">
+              <div class="calc-block desktop-margin">
                   <h2></h2>
                   <div style="display: flex; flex-direction: row; margin-bottom: 20px;">
                       <label class="custom-checkbox">
@@ -386,7 +396,34 @@
                   </div></body>
                   <h2 style="color: black;">Рассчетная стоимость<br>(установка включена): <span id = "price"></span></h2>
               </div>
-      
+              <style>
+                .calc-container {
+                    flex-direction: row;
+                  }
+                  .calc-block {
+                    width: 50%;
+                  }
+                  .desktop-margin {
+                    padding-left: 5%;
+                    width: 45%;
+                  }
+
+                @media only screen and (max-width: 768px) {
+                  .calc-container {
+                    flex-direction: column;
+                  }
+                  .calc-block {
+                    width: 100%;
+                  }
+                  .desktop-margin {
+                    padding-left: 0%;
+                    width: 100%;
+
+                  }
+
+
+                }
+              </style>              
       <script>
       body.addEventListener('click', function() {
         socketsPrice = (Number(sockets.value) || 0) * 20
