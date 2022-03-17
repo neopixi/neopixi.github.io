@@ -425,7 +425,7 @@ body {
                 }
               </style>              
       <script>
-      body.addEventListener('click', function() {
+      function evalCalc() {
         socketsPrice = (Number(sockets.value) || 0) * 20
         switchesPrice = (Number(switches.value) || 0) * 20
         ledsPrice = (20 * (Number(leds.value) > 0) || 0 ) + ((Number(leds.value) || 0) * 15)
@@ -433,7 +433,11 @@ body {
         leakPrice = leak.checked * 20
         total = socketsPrice + switchesPrice + ledsPrice + alexaPrice + leakPrice
         if(total > 0) price.textContent =  (total + 20) + ' EUR'
-      })
+      }
+      body.addEventListener('click', evalCalc)
+      window.setInterval(() => {
+        evalCalc();
+      }, 100);
       </script>
       </div>
     <div class="untree_co-section pb-0" id="about-section">
